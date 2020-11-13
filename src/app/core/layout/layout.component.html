@@ -1,0 +1,98 @@
+<div id="layout-container" class="mat-typography" [class.dark-theme]="isDark">
+  <!-- 👈 we're wrapping whole content in a div, to handle dark/light theme -->
+  <mat-sidenav-container autosize>
+    <mat-sidenav #sidenav mode="rail" opened [attr.color]="themeColor">
+      <mat-toolbar id="company-container" [color]="themeColor">
+        <div id="company">
+          <img src="/assets/img/logo.png" alt="logo">
+        </div>
+      </mat-toolbar>
+      <mat-nav-list>
+        <mat-divider></mat-divider>
+        <a mat-list-item routerLink="/dashboard">
+          <mat-icon mat-list-icon>home</mat-icon>
+          <p matLine>Dashboard</p>
+        </a>
+        <mat-divider></mat-divider>
+        <a mat-list-item routerLink="/styleguide">
+          <mat-icon mat-list-icon>star</mat-icon>
+          <p matLine>Styleguide</p>
+        </a>
+        <mat-divider></mat-divider>
+        <a mat-list-item>
+          <mat-icon mat-list-icon>person</mat-icon>
+          <p matLine>User Profile</p>
+        </a>
+        <mat-divider></mat-divider>
+        <a mat-list-item>
+          <mat-icon mat-list-icon>content_paste</mat-icon>
+          <p matLine>Table List</p>
+        </a>
+        <mat-divider></mat-divider>
+        <a mat-list-item>
+          <mat-icon mat-list-icon>library_books</mat-icon>
+          <p matLine>Typography</p>
+        </a>
+        <mat-divider></mat-divider>
+        <a mat-list-item>
+          <mat-icon mat-list-icon>location_on</mat-icon>
+          <p matLine>Maps</p>
+        </a>
+        <mat-divider></mat-divider>
+        <a mat-list-item>
+          <mat-icon mat-list-icon>calendar_today</mat-icon>
+          <p matLine>Calendar</p>
+        </a>
+        <!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-toolbar [color]="themeColor">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon mat-list-icon>menu</mat-icon>
+        </button>
+        <h1>Responsive App</h1>
+        <span class="filler-space"></span>
+        <!-- <button mat-icon-button aria-label="Example icon-button with heart icon">
+          <mat-icon mat-list-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button aria-label="Example icon-button with share icon">
+          <mat-icon mat-list-icon>share</mat-icon>
+        </button> -->
+        <!-- 👇 change the theme at run-time. -->
+        <button mat-icon-button (click)="toggleTheme()" matTooltip="Toggle dark theme">
+          <mat-icon>
+            bedtime
+          </mat-icon>
+        </button>
+        <button mat-button [matMenuTriggerFor]="menu">Change Color</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="themeColor = 'primary'">
+            <mat-icon [color]="themeColor === 'primary' ? 'primary' : 'no-color'">star</mat-icon>
+            Primary
+          </button>
+          <button mat-menu-item (click)="themeColor = 'warn'">
+            <mat-icon [color]="themeColor === 'warn' ? 'warn' : 'no-color'">warning</mat-icon>
+            Warn
+          </button>
+          <button mat-menu-item (click)="themeColor = 'accent'">
+            <mat-icon [color]="themeColor === 'accent' ? 'accent' : 'no-color'">wb_sunny</mat-icon>
+            Accent
+          </button>
+        </mat-menu>
+      </mat-toolbar>
+      <main id="content-container">
+        <!-- Applying the mat-tyography class adds styles for native elements. -->
+        <section class="title-group">
+          <h1>Heading Goes Here</h1>
+          <mat-divider></mat-divider>
+        </section>
+
+        <router-outlet></router-outlet>
+      </main>
+
+      <!-- <p *ngFor="let content of fillerContent">{{content}}</p> -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

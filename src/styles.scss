@@ -1,0 +1,41 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// import custom theme
+@import './app/styles/theme.scss';                      // 👈 changed
+// import custom component themes                       // 👈 changed
+@import './app/styles/custom-component-themes.scss';    // 👈 changed
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($theming-material-components-theme);    // 👈 changed
+@include custom-components-theme($theming-material-components-theme);   // 👈 changed
+
+// 👇 added
+// Include the dark color styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.dark-theme` will be affected by this alternate dark theme instead of the default theme.
+.dark-theme {
+  @include angular-material-color($dark-theme);
+  @include custom-components-theme($dark-theme); // 👈 added
+}
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($typography);
+// 👆 added
+
+// List of all component themes                                                                 // 👈 added
+// https://github.com/angular/components/blob/master/src/material/core/theming/_all-theme.scss  // 👈 added
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
